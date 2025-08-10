@@ -1,0 +1,23 @@
+
+services:
+- type: web
+  name: django_project_voting_app-1
+  runtime: python
+  repo: https://github.com/fred-bowens/django_project_voting_app
+  branch: votingapp
+  plan: free
+  envVars:
+  - key: ALLOWED_HOSTS
+    sync: false
+  - key: DEBUG
+    sync: false
+  - key: SECRET_KEY
+    sync: false
+  - key: DATABASE_URL
+    sync: false
+  region: oregon
+  buildCommand: pip install -r requirements.txt
+  startCommand: gunicorn votingapp.wsgi:application
+  autoDeployTrigger: commit
+  rootDir: django_project_voting_app
+version: "1"
