@@ -1,0 +1,22 @@
+
+services:
+  - type: web
+    name: django-web-service
+    env: python
+    plan: free
+    buildCommand: "pip install -r requirements.txt && python manage.py migrate && python manage.py collectstatic --noinput"
+    startCommand: "gunicorn your_project_name.wsgi:application"
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: django_voting_app.settings
+      - key: SECRET_KEY
+        value: django-insecure-2t1xod$0n-1)e4rsg&8hil^&$7eg62zp6y(w82i4h#^hrxc-!d
+      - key: ALLOWED_HOSTS
+        value: yawsonvotingapp.onrender.com
+      - fromDatabase:
+          name: my-postgres
+          property: connectionString
+          key:postgresql://postgres:[YOUR-PASSWORD]@db.vlbircttrheiydbdlyqn.supabase.co:5432/postgres 
+databases:
+  - name: my-postgres
+    plan: free
