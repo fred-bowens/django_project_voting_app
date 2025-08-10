@@ -4,4 +4,4 @@ sqlparse==0.5.3
 tzdata==2025.2
 
 
-pip freeze  | grep gunicorn >> requirements.txt
+'pip freeze  | grep gunicorn >> requirements.txt'
