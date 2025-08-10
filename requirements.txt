@@ -1,5 +1,4 @@
 
-pip freeze > requirements.txt
 
 asgiref==3.9.1
 Django==5.2.5
